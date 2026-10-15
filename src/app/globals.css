@@ -46,12 +46,15 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
-  --color-orange: #F26522;
+  --color-brand: #0E7C66;
+  --color-brand-soft: #E8F4F1;
+  --color-brand-light: #5FD4B8;
+  --color-ink: #0B1B33;
 }
 
 :root {
   --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --foreground: oklch(0.2 0.03 260);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -139,7 +142,7 @@ html {
 a:focus-visible,
 summary:focus-visible,
 button:focus-visible {
-  outline: 2px solid var(--color-orange);
+  outline: 2px solid var(--color-brand);
   outline-offset: 3px;
   border-radius: 6px;
 }
@@ -183,5 +186,5 @@ button:focus-visible {
   text-underline-offset: 3px;
 }
 .prose-legal a:hover {
-  color: var(--color-orange);
+  color: var(--color-brand);
 }

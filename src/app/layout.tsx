@@ -9,7 +9,7 @@ const geist = Geist({
 });
 
 const description =
-  "Pointlaine builds and operates independent digital properties that help consumers discover, compare and choose products and services with confidence.";
+  "Pointlaine is an independent digital publisher building content and comparison properties in telehealth (weight loss, TRT, HRT, ED) and pet care (pet insurance, supplements, dog and cat food).";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

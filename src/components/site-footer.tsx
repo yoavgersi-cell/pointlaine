@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LogoMark } from "@/components/logo-mark";
 import { Mail } from "lucide-react";
 import { CONTACT_EMAIL, mailto } from "@/lib/site";
 
@@ -7,8 +8,9 @@ const COLUMNS = [
     title: "Company",
     links: [
       { label: "About", href: "/#about" },
-      { label: "What We Build", href: "/#what-we-build" },
-      { label: "Industries", href: "/#industries" },
+      { label: "Telehealth & Wellness", href: "/#verticals" },
+      { label: "Pet Care", href: "/#verticals" },
+      { label: "For Affiliate Programs", href: "/#partners" },
     ],
   },
   {
@@ -23,7 +25,7 @@ const COLUMNS = [
   {
     title: "Contact",
     links: [
-      { label: "Partnership Inquiries", href: mailto("Partnership inquiry") },
+      { label: "Affiliate Partnerships", href: mailto("Affiliate partnership inquiry") },
       { label: "Advertise With Us", href: mailto("Advertising inquiry") },
       { label: "Sell Your Website", href: mailto("Website acquisition") },
       { label: "Report a Content Issue", href: mailto("Content correction") },
@@ -41,16 +43,16 @@ export function SiteFooter() {
         <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:justify-between">
           <div className="max-w-xs">
             <Link href="/" className="flex items-center gap-2 text-xl font-semibold tracking-tight">
-              <span className="inline-block h-2.5 w-2.5 rounded-full bg-orange" aria-hidden="true" />
+              <LogoMark />
               pointlaine
             </Link>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              A digital publishing and online media company helping consumers
-              discover, compare and make better decisions online.
+              An independent digital publisher helping consumers make better
+              decisions in telehealth and pet care.
             </p>
             <a
               href={`mailto:${CONTACT_EMAIL}`}
-              className="mt-5 inline-flex items-center gap-2 text-sm text-foreground hover:text-orange transition-colors"
+              className="mt-5 inline-flex items-center gap-2 text-sm text-foreground hover:text-brand transition-colors"
             >
               <Mail className="h-4 w-4" strokeWidth={1.5} />
               {CONTACT_EMAIL}
