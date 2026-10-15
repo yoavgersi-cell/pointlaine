@@ -35,7 +35,7 @@ const trafficProfile: [string, string][] = [
   ["Acquisition", "SEO and organic search"],
   ["Paid, incentivized, pop or push", "None"],
   ["Reader intent", "Comparing providers before buying"],
-  ["Verticals", "Telehealth · Pet care"],
+  ["Verticals", "Telehealth, pet care, home & more"],
   ["Sites", "4 owned and operated"],
   ["Active partnerships", "18"],
 ];
@@ -46,15 +46,15 @@ function Hero() {
       <div className="mx-auto grid max-w-6xl gap-14 px-6 pb-20 pt-16 lg:grid-cols-[1.25fr_1fr] lg:items-end lg:gap-16 lg:pb-28 lg:pt-24">
         <div>
           <p className="font-mono text-xs uppercase tracking-[0.12em] text-brand">
-            Independent publisher · Telehealth &amp; pet care
+            Independent digital publisher
           </p>
           <h1 className="mt-6 text-[2.6rem] font-semibold leading-[1.04] tracking-[-0.03em] sm:text-6xl lg:text-[4.4rem]">
-            We publish the research people do before they buy.
+            We help people make better decisions online.
           </h1>
           <p className="mt-7 max-w-xl font-serif text-xl leading-relaxed text-muted-foreground">
-            Pointlaine owns and operates content and comparison sites in telehealth and pet
-            care. Our readers find us through search while they are deciding, and we send
-            them to partners ready to act.
+            Pointlaine owns and operates content and comparison sites across consumer
+            categories, from telehealth to pet care. Readers find us through search while they
+            are deciding, and we send them to partners ready to act.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
             <Link
@@ -99,9 +99,10 @@ const exampleQueries = [
   "glp-1 weight loss program cost without insurance",
   "online trt clinic that includes lab testing",
   "best telehealth hrt for menopause",
-  "ed treatment online prescription compare",
+  "is a home warranty worth it for an older house",
   "pet insurance for senior dogs with pre-existing conditions",
   "fresh cat food subscription vs dry food",
+  "best budgeting app that syncs with my bank",
   "joint supplement for large breed dogs vet recommended",
 ];
 
@@ -169,12 +170,24 @@ const verticals = [
   },
 ];
 
+const moreCategories = [
+  ["Home & home services", "Home warranties, home services and protection plans"],
+  ["Personal finance & insurance", "Insurance, banking and everyday money decisions"],
+  ["Consumer technology", "Software, subscriptions, streaming and smart home"],
+  ["Lifestyle & family", "Wellness, travel, parenting and everyday essentials"],
+];
+
 function Verticals() {
   return (
     <Section id="verticals" label="What we cover">
       <h2 className="max-w-3xl text-3xl font-semibold leading-tight tracking-[-0.02em] sm:text-[2.6rem]">
-        Two verticals, eight categories, covered in depth.
+        Consumer categories where research comes before buying.
       </h2>
+      <p className="mt-6 max-w-2xl font-serif text-lg leading-relaxed text-muted-foreground">
+        We go where people need clear, trustworthy information before they commit. Telehealth
+        and pet care are two of our largest areas today, alongside a growing set of other
+        categories.
+      </p>
       <div className="mt-12 grid gap-12 md:grid-cols-2 md:gap-10">
         {verticals.map((v) => (
           <div key={v.name}>
@@ -190,6 +203,20 @@ function Verticals() {
             </dl>
           </div>
         ))}
+      </div>
+      <div className="mt-14">
+        <h3 className="border-b-2 border-ink pb-3 text-xl font-semibold">Also covering</h3>
+        <dl className="grid divide-y divide-line border-b border-line sm:grid-cols-2 sm:divide-y-0">
+          {moreCategories.map(([name, note]) => (
+            <div key={name} className="py-4 sm:border-b sm:border-line sm:pr-8">
+              <dt className="text-sm font-semibold">{name}</dt>
+              <dd className="mt-1 text-sm text-muted-foreground">{note}</dd>
+            </div>
+          ))}
+        </dl>
+        <p className="mt-5 text-sm text-muted-foreground">
+          New categories are added as we build and acquire properties.
+        </p>
       </div>
     </Section>
   );
@@ -209,7 +236,7 @@ const commitments = [
   },
   {
     title: "Health-claim compliance",
-    body: "No promised results, no calling compounded drugs FDA-approved, and a clear prescription and clinician note on every telehealth page.",
+    body: "In regulated categories like telehealth: no promised results, no calling compounded drugs FDA-approved, and a clear prescription and clinician note on every page.",
   },
   {
     title: "Disclosure on every page",
@@ -297,7 +324,7 @@ function Standards() {
         Partners can&apos;t buy a ranking. Everything else is written down.
       </h2>
       <p className="mt-6 max-w-2xl font-serif text-lg leading-relaxed text-muted-foreground">
-        Readers trust us with decisions about their health and their pets. These policies apply
+        Readers trust us with decisions about their money, health, home and pets. These policies apply
         to every site in the network, and we publish them so partners and readers can hold us
         to them.
       </p>
@@ -322,7 +349,7 @@ function Standards() {
 const contactLines = [
   ["Affiliate programs and networks", "Affiliate partnership inquiry"],
   ["Brands and advertisers", "Advertising inquiry"],
-  ["Selling a health or pet content site", "Website acquisition"],
+  ["Selling a content or comparison site", "Website acquisition"],
 ];
 
 function Contact() {

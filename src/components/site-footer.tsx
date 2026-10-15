@@ -8,8 +8,7 @@ const COLUMNS = [
     title: "Company",
     links: [
       { label: "About", href: "/#about" },
-      { label: "Telehealth & Wellness", href: "/#verticals" },
-      { label: "Pet Care", href: "/#verticals" },
+      { label: "What We Cover", href: "/#verticals" },
       { label: "For Affiliate Programs", href: "/#partners" },
     ],
   },
@@ -47,8 +46,8 @@ export function SiteFooter() {
               pointlaine
             </Link>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              An independent digital publisher helping consumers make better
-              decisions in telehealth and pet care.
+              An independent digital publisher helping people make better
+              decisions online.
             </p>
             <a
               href={`mailto:${CONTACT_EMAIL}`}

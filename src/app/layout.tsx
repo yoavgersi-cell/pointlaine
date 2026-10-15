@@ -8,7 +8,7 @@ const serif = Source_Serif_4({ variable: "--font-body-serif", subsets: ["latin"]
 const mono = IBM_Plex_Mono({ variable: "--font-plex-mono", subsets: ["latin"], weight: ["400", "500"] });
 
 const description =
-  "Pointlaine is an independent digital publisher building content and comparison properties in telehealth (weight loss, TRT, HRT, ED) and pet care (pet insurance, supplements, dog and cat food).";
+  "Pointlaine is an independent digital publisher helping people make better decisions online, with content and comparison sites across telehealth, pet care, home, finance and other consumer categories.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
