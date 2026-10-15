@@ -52,6 +52,27 @@ export default function EditorialStandardsPage() {
         <li>Content on health, finance and other sensitive topics is informational and is not a substitute for professional advice.</li>
       </ul>
 
+      <h2 id="health">Health and telehealth content</h2>
+      <p>
+        Our telehealth coverage — including weight loss and GLP-1 medications, testosterone
+        replacement therapy, hormone replacement therapy and erectile dysfunction treatment —
+        is held to additional standards:
+      </p>
+      <ul>
+        <li>Medical information is sourced from regulators, professional bodies and peer-reviewed research.</li>
+        <li>We note when a treatment requires a prescription and evaluation by a licensed clinician.</li>
+        <li>We do not describe compounded medications as FDA-approved, and we do not promise specific results.</li>
+        <li>We describe common risks and side effects alongside potential benefits.</li>
+        <li>Content is informational and never a substitute for advice from a qualified healthcare provider.</li>
+      </ul>
+
+      <h2 id="pet">Pet care content</h2>
+      <p>
+        Pet insurance, supplement and food coverage is based on policy documents, manufacturer
+        information and veterinary sources. We explain coverage exclusions and waiting periods,
+        and we encourage readers to involve their veterinarian in health and diet decisions.
+      </p>
+
       <h2 id="corrections">Corrections</h2>
       <p>
         We work hard to be accurate, but mistakes happen. If you believe something on one of our

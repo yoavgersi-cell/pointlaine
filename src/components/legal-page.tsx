@@ -29,7 +29,7 @@ export function LegalPage({
               <ArrowLeft className="h-3.5 w-3.5" strokeWidth={1.5} />
               Back to home
             </Link>
-            <p className="mb-4 text-xs font-medium uppercase tracking-widest text-orange">{eyebrow}</p>
+            <p className="mb-4 text-xs font-medium uppercase tracking-widest text-brand">{eyebrow}</p>
             <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">{title}</h1>
             <p className="mt-5 text-lg leading-relaxed text-muted-foreground">{intro}</p>
             <p className="mt-6 text-xs text-muted-foreground">Last updated: {LEGAL_LAST_UPDATED}</p>

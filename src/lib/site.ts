@@ -5,9 +5,9 @@ export const LEGAL_LAST_UPDATED = "October 15, 2026";
 
 export const NAV_LINKS = [
   { href: "/#about", label: "About" },
-  { href: "/#what-we-build", label: "What We Build" },
-  { href: "/#standards", label: "Our Standards" },
-  { href: "/#industries", label: "Industries" },
+  { href: "/#verticals", label: "Verticals" },
+  { href: "/#partners", label: "For Partners" },
+  { href: "/#standards", label: "Standards" },
 ];
 
 export function mailto(subject: string) {

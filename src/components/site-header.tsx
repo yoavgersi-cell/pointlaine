@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LogoMark } from "@/components/logo-mark";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { NAV_LINKS } from "@/lib/site";
 
@@ -14,7 +15,7 @@ export function SiteHeader() {
           className="flex items-center gap-2 text-xl font-semibold tracking-tight text-foreground"
           aria-label="Pointlaine home"
         >
-          <span className="inline-block h-2.5 w-2.5 rounded-full bg-orange" aria-hidden="true" />
+          <LogoMark />
           pointlaine
         </Link>
 
