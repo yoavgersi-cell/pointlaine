@@ -8,11 +8,11 @@ import { NAV_LINKS } from "@/lib/site";
 /* ------------------------------------------------------------------ */
 export function SiteHeader() {
   return (
-    <header className="fixed top-0 inset-x-0 z-50 bg-white/85 backdrop-blur-md border-b border-border/60">
+    <header className="fixed top-0 inset-x-0 z-50 bg-paper/90 backdrop-blur-md border-b border-line">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
         <Link
           href="/"
-          className="flex items-center gap-2 text-xl font-semibold tracking-tight text-foreground"
+          className="flex items-center gap-2 text-xl font-semibold tracking-[-0.02em] text-foreground"
           aria-label="Pointlaine home"
         >
           <LogoMark />
@@ -27,9 +27,9 @@ export function SiteHeader() {
           ))}
           <Link
             href="/#contact"
-            className="inline-flex items-center gap-1.5 rounded-full bg-foreground px-5 py-2 text-sm font-medium text-background transition-opacity hover:opacity-90"
+            className="inline-flex items-center gap-1.5 rounded-md bg-ink px-4 py-2 text-sm font-semibold text-background transition-opacity hover:opacity-90"
           >
-            Partner With Us
+            Contact
             <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
           </Link>
         </nav>
@@ -59,7 +59,7 @@ export function SiteHeader() {
               href="/#contact"
               className="mt-1 flex items-center justify-center gap-1.5 rounded-lg bg-foreground px-3 py-2.5 text-sm font-medium text-background"
             >
-              Partner With Us
+              Contact
               <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
             </Link>
           </nav>

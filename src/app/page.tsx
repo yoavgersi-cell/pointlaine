@@ -1,221 +1,146 @@
 import Link from "next/link";
-import {
-  ArrowRight,
-  Globe,
-  BarChart3,
-  Wrench,
-  Handshake,
-  ShieldCheck,
-  Scale,
-  Eye,
-  Lock,
-  RefreshCw,
-  Megaphone,
-  Building2,
-  Check,
-  Stethoscope,
-  PawPrint,
-  Search,
-  FileCheck2,
-  LineChart,
-  UserRound,
-  Ban,
-  ClipboardCheck,
-} from "lucide-react";
+import { ArrowRight, ArrowUpRight, Search } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
-import { CONTACT_EMAIL, mailto } from "@/lib/site";
+import { CONTACT_EMAIL, PARTNER_METRICS, mailto } from "@/lib/site";
 
-const eyebrow = "mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-brand";
+/* Shared rail layout: a narrow label column on the left, content on the right. */
+function Section({
+  id,
+  label,
+  children,
+  className = "",
+}: {
+  id?: string;
+  label: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <section id={id} className={`scroll-mt-16 border-t border-line ${className}`}>
+      <div className="mx-auto grid max-w-6xl gap-8 px-6 py-20 lg:grid-cols-[200px_1fr] lg:gap-16 lg:py-28">
+        <p className="font-mono text-xs uppercase tracking-[0.12em] text-muted-foreground lg:sticky lg:top-28 lg:self-start">
+          {label}
+        </p>
+        <div className="min-w-0">{children}</div>
+      </div>
+    </section>
+  );
+}
 
 /* ------------------------------------------------------------------ */
-/*  HERO                                                              */
+/*  HERO + TRAFFIC PROFILE                                            */
 /* ------------------------------------------------------------------ */
-const networkStats = [
-  { value: "4", label: "Digital properties" },
-  { value: "18", label: "Active partnerships" },
-  { value: "2", label: "Core verticals" },
-];
-
-const heroFocus = [
-  "Weight loss & GLP-1",
-  "TRT",
-  "HRT & menopause",
-  "ED",
-  "Pet insurance",
-  "Pet supplements",
-  "Dog & cat food",
+const trafficProfile: [string, string][] = [
+  ["Acquisition", "SEO and organic search"],
+  ["Paid, incentivized, pop or push", "None"],
+  ["Reader intent", "Comparing providers before buying"],
+  ["Verticals", "Telehealth, pet care, home & more"],
+  ["Sites", "4 owned and operated"],
+  ["Active partnerships", "18"],
 ];
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden bg-ink pt-16 text-white">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 opacity-[0.07]"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, #fff 1px, transparent 1px), linear-gradient(to bottom, #fff 1px, transparent 1px)",
-          backgroundSize: "72px 72px",
-          maskImage: "radial-gradient(ellipse at 70% 30%, #000 20%, transparent 70%)",
-        }}
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-40 -top-40 h-[520px] w-[520px] rounded-full bg-brand/30 blur-[120px]"
-      />
-
-      <div className="relative mx-auto max-w-6xl px-6 py-20 lg:py-28">
-        <div className="grid gap-14 lg:grid-cols-[1.2fr_1fr] lg:items-center">
-          <div>
-            <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs text-white/80 opacity-0 animate-fade-in-up">
-              <ShieldCheck className="h-3.5 w-3.5 text-brand-light" strokeWidth={2} />
-              Independent publisher · Telehealth &amp; Pet Care
-            </div>
-
-            <h1 className="text-[2.6rem] font-semibold leading-[1.06] tracking-tight sm:text-6xl lg:text-[4rem] opacity-0 animate-fade-in-up animate-delay-100">
-              Helping people make better health and pet care decisions.
-            </h1>
-
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/70 opacity-0 animate-fade-in-up animate-delay-200">
-              Pointlaine builds and operates content and comparison properties in
-              telehealth and pet care — connecting consumers who are actively researching
-              with the providers best suited to them, under clear editorial and compliance
-              standards.
-            </p>
-
-            <div className="mt-10 flex flex-col gap-3 sm:flex-row opacity-0 animate-fade-in-up animate-delay-300">
-              <Link
-                href="#partners"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-ink transition-opacity hover:opacity-90"
-              >
-                For Affiliate Programs
-                <ArrowRight className="h-4 w-4" strokeWidth={2} />
-              </Link>
-              <Link
-                href="#standards"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-white/10"
-              >
-                Our Standards
-              </Link>
-            </div>
-          </div>
-
-          <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-sm sm:p-8 opacity-0 animate-fade-in-up animate-delay-200">
-            <h2 className="text-sm font-semibold uppercase tracking-[0.14em] text-white/60">Network at a glance</h2>
-            <dl className="mt-6 grid grid-cols-3 gap-4 border-b border-white/10 pb-6">
-              {networkStats.map((stat) => (
-                <div key={stat.label}>
-                  <dd className="text-4xl font-semibold tracking-tight">{stat.value}</dd>
-                  <dt className="mt-1 text-xs text-white/60">{stat.label}</dt>
-                </div>
-              ))}
-            </dl>
-            <h3 className="mt-6 text-sm font-semibold uppercase tracking-[0.14em] text-white/60">Categories we cover</h3>
-            <ul className="mt-4 flex flex-wrap gap-2">
-              {heroFocus.map((c) => (
-                <li key={c} className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-white/85">
-                  {c}
-                </li>
-              ))}
-            </ul>
+    <section className="pt-16">
+      <div className="mx-auto grid max-w-6xl gap-14 px-6 pb-20 pt-16 lg:grid-cols-[1.25fr_1fr] lg:items-end lg:gap-16 lg:pb-28 lg:pt-24">
+        <div>
+          <p className="font-mono text-xs uppercase tracking-[0.12em] text-brand">
+            Independent digital publisher
+          </p>
+          <h1 className="mt-6 text-[2.6rem] font-semibold leading-[1.04] tracking-[-0.03em] sm:text-6xl lg:text-[4.4rem]">
+            We help people make better decisions online.
+          </h1>
+          <p className="mt-7 max-w-xl font-serif text-xl leading-relaxed text-muted-foreground">
+            Pointlaine owns and operates content and comparison sites across consumer
+            categories, from telehealth to pet care. Readers find us through search while they
+            are deciding, and we send them to partners ready to act.
+          </p>
+          <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
+            <Link
+              href="#partners"
+              className="inline-flex items-center gap-2 rounded-md bg-ink px-5 py-3 text-sm font-semibold text-paper transition-opacity hover:opacity-90"
+            >
+              Work with us
+              <ArrowRight className="h-4 w-4" strokeWidth={2} />
+            </Link>
+            <Link
+              href="/editorial-standards"
+              className="text-sm font-semibold text-foreground underline decoration-line decoration-2 underline-offset-[6px] hover:decoration-brand"
+            >
+              Read our editorial standards
+            </Link>
           </div>
         </div>
-      </div>
-    </section>
-  );
-}
 
-/* ------------------------------------------------------------------ */
-/*  TRUST STRIP                                                       */
-/* ------------------------------------------------------------------ */
-const trustPoints = [
-  { icon: FileCheck2, label: "FTC-aligned disclosures" },
-  { icon: Search, label: "Content-led, organic traffic" },
-  { icon: Scale, label: "Editorial independence" },
-  { icon: Lock, label: "Privacy-first operations" },
-];
-
-function TrustStrip() {
-  return (
-    <section aria-label="Commitments" className="border-b border-border bg-white">
-      <div className="mx-auto grid max-w-6xl grid-cols-2 gap-x-6 gap-y-5 px-6 py-8 lg:grid-cols-4">
-        {trustPoints.map((t) => (
-          <div key={t.label} className="flex items-center gap-3 text-sm font-medium text-foreground">
-            <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-soft">
-              <t.icon className="h-4 w-4 text-brand" strokeWidth={1.75} />
-            </span>
-            {t.label}
+        <aside aria-labelledby="profile-title" className="rounded-lg bg-ink p-7 text-paper sm:p-8">
+          <div className="flex items-baseline justify-between gap-4 border-b border-white/15 pb-4">
+            <h2 id="profile-title" className="text-base font-semibold">Traffic profile</h2>
+            <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-paper/50">Network-wide</span>
           </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/*  WHO WE ARE                                                        */
-/* ------------------------------------------------------------------ */
-const aboutPoints = [
-  {
-    icon: Globe,
-    title: "We own and operate our properties",
-    description:
-      "Every site in our network is built, written and maintained by our own team — research, publishing, compliance and partner management under one roof.",
-  },
-  {
-    icon: UserRound,
-    title: "We serve readers first",
-    description:
-      "We reach people while they're actively researching a decision. Our job is to make that decision clearer — which is also what makes the traffic valuable to partners.",
-  },
-  {
-    icon: BarChart3,
-    title: "We work from evidence",
-    description:
-      "Comparisons are built on documented criteria, provider documentation and primary sources — never on who pays the most.",
-  },
-];
-
-function WhoWeAre() {
-  return (
-    <section id="about" className="scroll-mt-16 bg-white py-24 lg:py-32">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="grid gap-16 lg:grid-cols-2 lg:items-start">
-          <div className="lg:sticky lg:top-28">
-            <p className={eyebrow}>Who We Are</p>
-            <h2 className="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl lg:text-[2.6rem]">
-              A focused digital publisher, built for trust.
-            </h2>
-            <p className="mt-6 text-base leading-relaxed text-muted-foreground">
-              Pointlaine is a digital publishing and online media company. We build, acquire
-              and operate content and comparison properties in two categories where good
-              information matters most: <strong className="font-semibold text-foreground">telehealth</strong> and{" "}
-              <strong className="font-semibold text-foreground">pet care</strong>.
-            </p>
-            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-              Like most independent publishers, we&apos;re supported by affiliate and
-              advertising partnerships. We&apos;re open about that, and we keep strict lines
-              between commercial relationships and editorial judgment.
-            </p>
-          </div>
-
-          <div className="flex flex-col gap-4">
-            {aboutPoints.map((p) => (
-              <div key={p.title} className="flex gap-5 rounded-2xl border border-border bg-white p-6">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-soft">
-                  <p.icon className="h-5 w-5 text-brand" strokeWidth={1.75} />
-                </div>
-                <div>
-                  <h3 className="text-base font-semibold">{p.title}</h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{p.description}</p>
-                </div>
+          <dl className="divide-y divide-white/10">
+            {trafficProfile.map(([k, v]) => (
+              <div key={k} className="grid grid-cols-[1fr_auto] gap-6 py-3.5 text-sm">
+                <dt className="text-paper/60">{k}</dt>
+                <dd className="text-right font-medium tabular-nums">{v}</dd>
               </div>
             ))}
-          </div>
-        </div>
+          </dl>
+        </aside>
       </div>
     </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  INTENT — the searches readers arrive with                         */
+/* ------------------------------------------------------------------ */
+const exampleQueries = [
+  "glp-1 weight loss program cost without insurance",
+  "online trt clinic that includes lab testing",
+  "best telehealth hrt for menopause",
+  "is a home warranty worth it for an older house",
+  "pet insurance for senior dogs with pre-existing conditions",
+  "fresh cat food subscription vs dry food",
+  "best budgeting app that syncs with my bank",
+  "joint supplement for large breed dogs vet recommended",
+];
+
+function Intent() {
+  return (
+    <Section id="about" label="Who our readers are">
+      <h2 className="max-w-3xl text-3xl font-semibold leading-tight tracking-[-0.02em] sm:text-[2.6rem]">
+        People who arrive already deciding.
+      </h2>
+      <div className="mt-8 grid gap-12 lg:grid-cols-2 [&>*]:min-w-0">
+        <div className="max-w-xl space-y-5 font-serif text-lg leading-relaxed text-muted-foreground">
+          <p>
+            We don&apos;t buy traffic. Every reader on a Pointlaine property got there from a
+            search engine or by coming back on their own. They are comparing costs, checking
+            eligibility, and reading the fine print, which is the last step before they sign up.
+          </p>
+          <p>
+            That is why our referrals tend to convert and stay. Readers who have already read
+            how a program works, what it costs and who it is for are less likely to cancel or ask
+            for a refund.
+          </p>
+        </div>
+        <div>
+          <p className="text-sm font-semibold">The kind of searches our content is built to answer</p>
+          <ul className="mt-4 space-y-2.5">
+            {exampleQueries.map((q) => (
+              <li
+                key={q}
+                className="flex items-start gap-3 rounded-md border border-line bg-white px-4 py-2.5 font-mono text-[13px] text-foreground"
+              >
+                <Search className="mt-[3px] h-3.5 w-3.5 shrink-0 text-muted-foreground" strokeWidth={2} />
+                <span className="min-w-0">{q}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </Section>
   );
 }
 
@@ -224,205 +149,159 @@ function WhoWeAre() {
 /* ------------------------------------------------------------------ */
 const verticals = [
   {
-    icon: Stethoscope,
-    name: "Telehealth & Wellness",
-    summary:
-      "Plain-language guides and provider comparisons for people considering online care — covering how treatments work, what they cost, who they're for, and what to ask a clinician.",
+    name: "Telehealth",
+    lede: "Guides and provider comparisons for people considering online care.",
     categories: [
-      { name: "Weight loss & GLP-1", note: "Medical weight-loss programs, GLP-1 options, costs and eligibility" },
-      { name: "TRT", note: "Testosterone replacement therapy providers, testing and monitoring" },
-      { name: "HRT & menopause", note: "Hormone therapy for menopause and perimenopause care" },
-      { name: "ED", note: "Erectile dysfunction treatment options and online providers" },
+      ["Weight loss & GLP-1", "Medical weight-loss programs, costs, eligibility"],
+      ["TRT", "Testosterone therapy providers, labs, monitoring"],
+      ["HRT & menopause", "Hormone therapy and perimenopause care"],
+      ["ED", "Treatment options and online prescribers"],
     ],
-    footnote:
-      "Health content is informational, sourced from regulators and peer-reviewed research, and always points readers to a licensed clinician.",
   },
   {
-    icon: PawPrint,
-    name: "Pet Care",
-    summary:
-      "Practical, research-backed help for dog and cat owners — from protecting against vet bills to choosing what goes in the bowl.",
+    name: "Pet care",
+    lede: "Practical, research-backed help for dog and cat owners.",
     categories: [
-      { name: "Pet insurance", note: "Plan comparisons, coverage, exclusions and claim experience" },
-      { name: "Pet supplements", note: "Joint, skin, digestive and calming supplements" },
-      { name: "Dog food", note: "Fresh, subscription and traditional dog food" },
-      { name: "Cat food", note: "Wet, dry and fresh cat food options" },
+      ["Pet insurance", "Coverage, exclusions, waiting periods, claims"],
+      ["Pet supplements", "Joint, skin, digestive and calming"],
+      ["Dog food", "Fresh, subscription and traditional"],
+      ["Cat food", "Wet, dry and fresh options"],
     ],
-    footnote:
-      "Pet content draws on veterinary sources and manufacturer documentation, and encourages readers to involve their vet.",
   },
+];
+
+const moreCategories = [
+  ["Home & home services", "Home warranties, home services and protection plans"],
+  ["Personal finance & insurance", "Insurance, banking and everyday money decisions"],
+  ["Consumer technology", "Software, subscriptions, streaming and smart home"],
+  ["Lifestyle & family", "Wellness, travel, parenting and everyday essentials"],
 ];
 
 function Verticals() {
   return (
-    <section id="verticals" className="scroll-mt-16 bg-secondary/60 py-24 lg:py-32">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="max-w-2xl">
-          <p className={eyebrow}>Our Verticals</p>
-          <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-            Two categories. Deep expertise in each.
-          </h2>
-          <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-            We deliberately focus on high-consideration categories where readers do real
-            research before they buy — and where accuracy and compliance matter.
-          </p>
-        </div>
-
-        <div className="mt-14 grid gap-6 lg:grid-cols-2">
-          {verticals.map((v) => (
-            <article key={v.name} className="flex flex-col rounded-2xl border border-border bg-white p-7 sm:p-8">
-              <div className="flex items-center gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-ink">
-                  <v.icon className="h-5 w-5 text-white" strokeWidth={1.75} />
+    <Section id="verticals" label="What we cover">
+      <h2 className="max-w-3xl text-3xl font-semibold leading-tight tracking-[-0.02em] sm:text-[2.6rem]">
+        Consumer categories where research comes before buying.
+      </h2>
+      <p className="mt-6 max-w-2xl font-serif text-lg leading-relaxed text-muted-foreground">
+        We go where people need clear, trustworthy information before they commit. Telehealth
+        and pet care are two of our largest areas today, alongside a growing set of other
+        categories.
+      </p>
+      <div className="mt-12 grid gap-12 md:grid-cols-2 md:gap-10">
+        {verticals.map((v) => (
+          <div key={v.name}>
+            <h3 className="border-b-2 border-ink pb-3 text-xl font-semibold">{v.name}</h3>
+            <p className="mt-4 font-serif text-base leading-relaxed text-muted-foreground">{v.lede}</p>
+            <dl className="mt-5 divide-y divide-line border-y border-line">
+              {v.categories.map(([name, note]) => (
+                <div key={name} className="grid gap-1 py-3.5 sm:grid-cols-[170px_1fr] sm:gap-4">
+                  <dt className="text-sm font-semibold">{name}</dt>
+                  <dd className="text-sm text-muted-foreground">{note}</dd>
                 </div>
-                <h3 className="text-xl font-semibold tracking-tight">{v.name}</h3>
-              </div>
-              <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{v.summary}</p>
-
-              <ul className="mt-6 divide-y divide-border border-y border-border">
-                {v.categories.map((c) => (
-                  <li key={c.name} className="flex items-start gap-3 py-3.5">
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand" strokeWidth={2.25} />
-                    <div>
-                      <p className="text-sm font-semibold">{c.name}</p>
-                      <p className="mt-0.5 text-sm text-muted-foreground">{c.note}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-
-              <p className="mt-5 text-xs leading-relaxed text-muted-foreground">{v.footnote}</p>
-            </article>
-          ))}
-        </div>
+              ))}
+            </dl>
+          </div>
+        ))}
       </div>
-    </section>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/*  WHAT WE BUILD                                                     */
-/* ------------------------------------------------------------------ */
-const builds = [
-  {
-    icon: Globe,
-    title: "Content Platforms",
-    description: "In-depth guides that explain options, costs and trade-offs in plain language.",
-  },
-  {
-    icon: BarChart3,
-    title: "Comparison Experiences",
-    description: "Side-by-side provider and product comparisons built on transparent criteria.",
-  },
-  {
-    icon: Wrench,
-    title: "Decision Tools",
-    description: "Quizzes and calculators that help readers narrow down what fits their situation.",
-  },
-  {
-    icon: Handshake,
-    title: "Partner Integrations",
-    description: "Offer placements, tracking and landing experiences built to each program's rules.",
-  },
-];
-
-function WhatWeBuild() {
-  return (
-    <section id="what-we-build" className="scroll-mt-16 bg-white py-24 lg:py-32">
-      <div className="mx-auto max-w-6xl px-6">
-        <p className={eyebrow}>What We Build</p>
-        <h2 className="max-w-2xl text-3xl font-semibold tracking-tight sm:text-4xl">
-          Properties designed to be genuinely useful.
-        </h2>
-
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {builds.map((item) => (
-            <div key={item.title} className="rounded-2xl border border-border bg-white p-6">
-              <div className="mb-5 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-brand-soft">
-                <item.icon className="h-5 w-5 text-brand" strokeWidth={1.75} />
-              </div>
-              <h3 className="text-base font-semibold">{item.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+      <div className="mt-14">
+        <h3 className="border-b-2 border-ink pb-3 text-xl font-semibold">Also covering</h3>
+        <dl className="grid divide-y divide-line border-b border-line sm:grid-cols-2 sm:divide-y-0">
+          {moreCategories.map(([name, note]) => (
+            <div key={name} className="py-4 sm:border-b sm:border-line sm:pr-8">
+              <dt className="text-sm font-semibold">{name}</dt>
+              <dd className="mt-1 text-sm text-muted-foreground">{note}</dd>
             </div>
           ))}
-        </div>
+        </dl>
+        <p className="mt-5 text-sm text-muted-foreground">
+          New categories are added as we build and acquire properties.
+        </p>
       </div>
-    </section>
+    </Section>
   );
 }
 
 /* ------------------------------------------------------------------ */
-/*  FOR AFFILIATE PROGRAMS                                            */
+/*  FOR PARTNERS                                                      */
 /* ------------------------------------------------------------------ */
-const partnerReasons = [
+const commitments = [
   {
-    icon: Search,
-    title: "High-intent, content-led traffic",
-    description:
-      "Readers reach us through search and editorial content while comparing options — not through incentivized, pop-up or misleading placements.",
+    title: "Search traffic only",
+    body: "No paid media arbitrage, incentivized clicks, pop-unders, push notifications, email blasts or cookie stuffing. If a reader clicks your link, they meant to.",
   },
   {
-    icon: ClipboardCheck,
-    title: "Compliance built in",
-    description:
-      "Clear affiliate disclosures, no unapproved health claims, and creative used only as each program allows. Health content avoids diagnosis and promises of results.",
+    title: "Your program terms, followed",
+    body: "We don't bid on your brand terms, run unapproved coupons or alter your creative. Approved claims stay approved claims.",
   },
   {
-    icon: Ban,
-    title: "We respect program terms",
-    description:
-      "We follow each program's rules on brand-term bidding, coupon usage, trademarks and approved messaging — and we ask when something is unclear.",
+    title: "Health-claim compliance",
+    body: "In regulated categories like telehealth: no promised results, no calling compounded drugs FDA-approved, and a clear prescription and clinician note on every page.",
   },
   {
-    icon: LineChart,
-    title: "Ongoing optimization",
-    description:
-      "We review performance with partners regularly and improve placements, content and landing flows to lift conversion quality, not just volume.",
+    title: "Disclosure on every page",
+    body: "Affiliate relationships are disclosed above the first link, in plain language, consistent with FTC guidance.",
   },
 ];
 
-const partnerSteps = [
-  { title: "Introduction", description: "We share our properties, traffic sources and audience with your team." },
-  { title: "Compliance review", description: "We align on approved claims, creative and brand guidelines before launch." },
-  { title: "Launch", description: "Placements go live with proper tracking and disclosures in place." },
-  { title: "Optimize", description: "Regular check-ins on performance, quality and new opportunities." },
+const onboarding = [
+  ["Introduction", "We share our sites, traffic sources and audience with your team."],
+  ["Compliance review", "We agree approved claims, creative and brand rules before launch."],
+  ["Launch", "Placements go live with tracking and disclosures in place."],
+  ["Review", "We go over lead quality and performance with you each month."],
 ];
 
 function Partners() {
   return (
-    <section id="partners" className="scroll-mt-16 bg-ink py-24 text-white lg:py-32">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="max-w-2xl">
-          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-brand-light">For Affiliate Programs</p>
-          <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-            A publishing partner you can put your brand next to.
+    <section id="partners" className="scroll-mt-16 bg-ink text-paper">
+      <div className="mx-auto grid max-w-6xl gap-8 px-6 py-20 lg:grid-cols-[200px_1fr] lg:gap-16 lg:py-28">
+        <p className="font-mono text-xs uppercase tracking-[0.12em] text-paper/50 lg:sticky lg:top-28 lg:self-start">
+          For affiliate programs
+        </p>
+        <div className="min-w-0">
+          <h2 className="max-w-3xl text-3xl font-semibold leading-tight tracking-[-0.02em] sm:text-[2.6rem]">
+            Quality traffic, and a publisher your compliance team can approve.
           </h2>
-          <p className="mt-5 text-base leading-relaxed text-white/70">
-            Telehealth and pet care programs hold their partners to a high bar. So do we.
-            Here&apos;s what working with Pointlaine looks like.
-          </p>
-        </div>
 
-        <div className="mt-14 grid gap-5 sm:grid-cols-2">
-          {partnerReasons.map((r) => (
-            <div key={r.title} className="rounded-2xl border border-white/10 bg-white/[0.04] p-7">
-              <r.icon className="h-5 w-5 text-brand-light" strokeWidth={1.75} />
-              <h3 className="mt-4 text-lg font-semibold">{r.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-white/70">{r.description}</p>
-            </div>
-          ))}
-        </div>
+          {PARTNER_METRICS.length > 0 && (
+            <dl className="mt-12 grid grid-cols-2 gap-8 border-y border-white/15 py-8 md:grid-cols-4">
+              {PARTNER_METRICS.map((m) => (
+                <div key={m.label}>
+                  <dd className="text-4xl font-semibold tabular-nums tracking-tight">{m.value}</dd>
+                  <dt className="mt-2 text-sm text-paper/60">{m.label}</dt>
+                </div>
+              ))}
+            </dl>
+          )}
 
-        <h3 className="mt-20 text-sm font-semibold uppercase tracking-[0.14em] text-white/60">How we onboard a new program</h3>
-        <ol className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {partnerSteps.map((s, i) => (
-            <li key={s.title} className="border-t border-white/15 pt-5">
-              <span className="text-xs font-semibold tabular-nums text-brand-light">0{i + 1}</span>
-              <p className="mt-2 text-base font-semibold">{s.title}</p>
-              <p className="mt-1.5 text-sm leading-relaxed text-white/65">{s.description}</p>
-            </li>
-          ))}
-        </ol>
+          <div className="mt-12 grid gap-x-12 gap-y-10 md:grid-cols-2">
+            {commitments.map((c) => (
+              <div key={c.title} className="border-t border-white/15 pt-5">
+                <h3 className="text-lg font-semibold">{c.title}</h3>
+                <p className="mt-2 font-serif text-base leading-relaxed text-paper/70">{c.body}</p>
+              </div>
+            ))}
+          </div>
+
+          <h3 className="mt-20 text-lg font-semibold">How a new program goes live</h3>
+          <ol className="mt-6 grid gap-px overflow-hidden rounded-lg bg-white/15 sm:grid-cols-2 lg:grid-cols-4">
+            {onboarding.map(([title, body], i) => (
+              <li key={title} className="bg-ink p-6">
+                <span className="font-mono text-xs text-brand-light">Step {i + 1}</span>
+                <p className="mt-3 font-semibold">{title}</p>
+                <p className="mt-1.5 text-sm leading-relaxed text-paper/65">{body}</p>
+              </li>
+            ))}
+          </ol>
+
+          <a
+            href={mailto("Affiliate partnership inquiry")}
+            className="mt-12 inline-flex items-center gap-2 rounded-md bg-paper px-5 py-3 text-sm font-semibold text-ink transition-opacity hover:opacity-90"
+          >
+            Request our partner overview
+            <ArrowRight className="h-4 w-4" strokeWidth={2} />
+          </a>
+        </div>
       </div>
     </section>
   );
@@ -432,148 +311,77 @@ function Partners() {
 /*  STANDARDS                                                         */
 /* ------------------------------------------------------------------ */
 const standards = [
-  {
-    icon: Scale,
-    title: "Editorial independence",
-    description:
-      "Partners can't buy a ranking, a score or a recommendation. Editorial calls are made on documented criteria.",
-    href: "/editorial-standards",
-    cta: "Editorial standards",
-  },
-  {
-    icon: Eye,
-    title: "Transparent monetization",
-    description:
-      "When we may earn a commission, we say so clearly — on the page, before the link, in plain language.",
-    href: "/disclosure",
-    cta: "Advertising disclosure",
-  },
-  {
-    icon: RefreshCw,
-    title: "Accuracy & corrections",
-    description:
-      "Content is checked against primary sources, reviewed on a schedule, and corrected promptly when we get something wrong.",
-    href: "/editorial-standards#corrections",
-    cta: "Corrections policy",
-  },
-  {
-    icon: Lock,
-    title: "Respect for privacy",
-    description:
-      "We collect only what we need to run our sites, explain exactly how data is used, and make it easy to opt out.",
-    href: "/privacy",
-    cta: "Privacy policy",
-  },
+  ["Editorial standards", "How we research, review and correct content, including health-specific rules.", "/editorial-standards"],
+  ["Advertising disclosure", "How we make money and what compensation can and cannot affect.", "/disclosure"],
+  ["Privacy policy", "What we collect, why, and the choices readers have.", "/privacy"],
+  ["Terms of use", "The terms that govern use of our sites.", "/terms"],
 ];
 
 function Standards() {
   return (
-    <section id="standards" className="scroll-mt-16 bg-white py-24 lg:py-32">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="max-w-2xl">
-          <p className={eyebrow}>Our Standards</p>
-          <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-            Trust is the product. Here&apos;s how we earn it.
-          </h2>
-          <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-            Readers rely on our properties for decisions about their health and their pets.
-            These commitments apply to every site in the Pointlaine network.
-          </p>
-        </div>
-
-        <div className="mt-14 grid gap-5 sm:grid-cols-2">
-          {standards.map((s) => (
-            <div key={s.title} className="flex flex-col rounded-2xl border border-border bg-white p-7">
-              <div className="flex items-center gap-4">
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-brand-soft">
-                  <s.icon className="h-5 w-5 text-brand" strokeWidth={1.75} />
-                </div>
-                <h3 className="text-lg font-semibold">{s.title}</h3>
-              </div>
-              <p className="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground">{s.description}</p>
-              <Link
-                href={s.href}
-                className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-brand hover:underline underline-offset-4"
-              >
-                {s.cta}
-                <ArrowRight className="h-3.5 w-3.5" strokeWidth={2} />
-              </Link>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+    <Section id="standards" label="Our standards">
+      <h2 className="max-w-3xl text-3xl font-semibold leading-tight tracking-[-0.02em] sm:text-[2.6rem]">
+        Partners can&apos;t buy a ranking. Everything else is written down.
+      </h2>
+      <p className="mt-6 max-w-2xl font-serif text-lg leading-relaxed text-muted-foreground">
+        Readers trust us with decisions about their money, health, home and pets. These policies apply
+        to every site in the network, and we publish them so partners and readers can hold us
+        to them.
+      </p>
+      <ul className="mt-10 divide-y divide-line border-y border-line">
+        {standards.map(([title, body, href]) => (
+          <li key={href}>
+            <Link href={href} className="group grid items-center gap-2 py-5 sm:grid-cols-[240px_1fr_auto] sm:gap-8">
+              <span className="font-semibold group-hover:text-brand">{title}</span>
+              <span className="text-sm text-muted-foreground">{body}</span>
+              <ArrowUpRight className="hidden h-4 w-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand sm:block" strokeWidth={2} />
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </Section>
   );
 }
 
 /* ------------------------------------------------------------------ */
 /*  CONTACT                                                           */
 /* ------------------------------------------------------------------ */
-const partnerPaths = [
-  {
-    icon: Handshake,
-    title: "Affiliate programs & networks",
-    description: "Telehealth or pet care program looking for a compliant, content-led publisher.",
-    subject: "Affiliate partnership inquiry",
-    cta: "Start a partnership",
-  },
-  {
-    icon: Megaphone,
-    title: "Brands & advertisers",
-    description: "Reach readers in the research phase through clearly labeled placements.",
-    subject: "Advertising inquiry",
-    cta: "Advertise with us",
-  },
-  {
-    icon: Building2,
-    title: "Website owners",
-    description: "Own a health or pet content site? We acquire and grow quality properties.",
-    subject: "Website acquisition",
-    cta: "Talk about a sale",
-  },
+const contactLines = [
+  ["Affiliate programs and networks", "Affiliate partnership inquiry"],
+  ["Brands and advertisers", "Advertising inquiry"],
+  ["Selling a content or comparison site", "Website acquisition"],
 ];
 
 function Contact() {
   return (
-    <section id="contact" className="scroll-mt-16 bg-secondary/60 py-24 lg:py-32">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="max-w-2xl">
-          <p className={eyebrow}>Partner With Us</p>
-          <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-            Let&apos;s talk about working together.
-          </h2>
-          <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-            Every inquiry is read by a member of our team. Tell us about your program or
-            brand and what you have in mind.
-          </p>
-        </div>
-
-        <div className="mt-12 grid gap-5 md:grid-cols-3">
-          {partnerPaths.map((p) => (
+    <Section id="contact" label="Contact">
+      <h2 className="text-3xl font-semibold leading-tight tracking-[-0.02em] sm:text-[2.6rem]">
+        Talk to the team.
+      </h2>
+      <a
+        href={`mailto:${CONTACT_EMAIL}`}
+        className="mt-6 inline-block break-all text-2xl font-semibold text-brand underline decoration-2 underline-offset-[6px] hover:decoration-ink sm:text-4xl"
+      >
+        {CONTACT_EMAIL}
+      </a>
+      <p className="mt-6 max-w-xl font-serif text-lg leading-relaxed text-muted-foreground">
+        A person on our team reads every message. Include your program or company name and what
+        you have in mind.
+      </p>
+      <ul className="mt-10 grid gap-3 sm:grid-cols-3">
+        {contactLines.map(([label, subject]) => (
+          <li key={label}>
             <a
-              key={p.title}
-              href={mailto(p.subject)}
-              className="group flex flex-col rounded-2xl border border-border bg-white p-7 transition-all hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-lg"
+              href={mailto(subject)}
+              className="flex h-full items-center justify-between gap-4 rounded-md border border-line bg-white px-5 py-4 text-sm font-semibold transition-colors hover:border-ink"
             >
-              <p.icon className="h-5 w-5 text-brand" strokeWidth={1.75} />
-              <h3 className="mt-4 text-base font-semibold">{p.title}</h3>
-              <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{p.description}</p>
-              <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-foreground">
-                {p.cta}
-                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" strokeWidth={2} />
-              </span>
+              {label}
+              <ArrowRight className="h-4 w-4 shrink-0" strokeWidth={2} />
             </a>
-          ))}
-        </div>
-
-        <p className="mt-10 text-sm text-muted-foreground">
-          Prefer to write directly?{" "}
-          <a href={`mailto:${CONTACT_EMAIL}`} className="font-semibold text-foreground underline underline-offset-4 hover:text-brand">
-            {CONTACT_EMAIL}
-          </a>
-        </p>
-      </div>
-    </section>
+          </li>
+        ))}
+      </ul>
+    </Section>
   );
 }
 
@@ -586,10 +394,8 @@ export default function Home() {
       <SiteHeader />
       <main id="main" className="flex-1">
         <Hero />
-        <TrustStrip />
-        <WhoWeAre />
+        <Intent />
         <Verticals />
-        <WhatWeBuild />
         <Partners />
         <Standards />
         <Contact />

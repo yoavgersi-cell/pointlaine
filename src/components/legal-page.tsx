@@ -19,8 +19,8 @@ export function LegalPage({
   return (
     <>
       <SiteHeader />
-      <main id="main" className="flex-1 bg-white pt-16">
-        <div className="border-b border-border bg-secondary/50">
+      <main id="main" className="flex-1 bg-paper pt-16">
+        <div className="border-b border-line bg-secondary">
           <div className="mx-auto max-w-3xl px-6 py-16 lg:py-20">
             <Link
               href="/"
@@ -29,7 +29,7 @@ export function LegalPage({
               <ArrowLeft className="h-3.5 w-3.5" strokeWidth={1.5} />
               Back to home
             </Link>
-            <p className="mb-4 text-xs font-medium uppercase tracking-widest text-brand">{eyebrow}</p>
+            <p className="mb-4 font-mono text-xs uppercase tracking-[0.12em] text-brand">{eyebrow}</p>
             <h1 className="text-4xl font-semibold tracking-tight sm:text-5xl">{title}</h1>
             <p className="mt-5 text-lg leading-relaxed text-muted-foreground">{intro}</p>
             <p className="mt-6 text-xs text-muted-foreground">Last updated: {LEGAL_LAST_UPDATED}</p>

@@ -8,8 +8,7 @@ const COLUMNS = [
     title: "Company",
     links: [
       { label: "About", href: "/#about" },
-      { label: "Telehealth & Wellness", href: "/#verticals" },
-      { label: "Pet Care", href: "/#verticals" },
+      { label: "What We Cover", href: "/#verticals" },
       { label: "For Affiliate Programs", href: "/#partners" },
     ],
   },
@@ -38,7 +37,7 @@ const COLUMNS = [
 /* ------------------------------------------------------------------ */
 export function SiteFooter() {
   return (
-    <footer className="border-t border-border bg-white py-16 lg:py-20">
+    <footer className="border-t border-line bg-paper py-16 lg:py-20">
       <div className="mx-auto max-w-6xl px-6">
         <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:justify-between">
           <div className="max-w-xs">
@@ -47,8 +46,8 @@ export function SiteFooter() {
               pointlaine
             </Link>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              An independent digital publisher helping consumers make better
-              decisions in telehealth and pet care.
+              An independent digital publisher helping people make better
+              decisions online.
             </p>
             <a
               href={`mailto:${CONTACT_EMAIL}`}

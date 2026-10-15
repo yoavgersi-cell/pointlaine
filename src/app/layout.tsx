@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { IBM_Plex_Mono, Schibsted_Grotesk, Source_Serif_4 } from "next/font/google";
 import { CONTACT_EMAIL, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
-const geist = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+const grotesk = Schibsted_Grotesk({ variable: "--font-grotesk", subsets: ["latin"] });
+const serif = Source_Serif_4({ variable: "--font-body-serif", subsets: ["latin"] });
+const mono = IBM_Plex_Mono({ variable: "--font-plex-mono", subsets: ["latin"], weight: ["400", "500"] });
 
 const description =
-  "Pointlaine is an independent digital publisher building content and comparison properties in telehealth (weight loss, TRT, HRT, ED) and pet care (pet insurance, supplements, dog and cat food).";
+  "Pointlaine is an independent digital publisher helping people make better decisions online, with content and comparison sites across telehealth, pet care, home, finance and other consumer categories.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -58,7 +57,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geist.variable} h-full antialiased`}>
+    <html lang="en" className={`${grotesk.variable} ${serif.variable} ${mono.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <a
           href="#main"
