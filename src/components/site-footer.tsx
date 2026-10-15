@@ -38,7 +38,7 @@ const COLUMNS = [
 /* ------------------------------------------------------------------ */
 export function SiteFooter() {
   return (
-    <footer className="border-t border-border bg-white py-16 lg:py-20">
+    <footer className="border-t border-line bg-paper py-16 lg:py-20">
       <div className="mx-auto max-w-6xl px-6">
         <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:justify-between">
           <div className="max-w-xs">
