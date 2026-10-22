@@ -10,6 +10,7 @@ const COLUMNS = [
       { label: "About", href: "/#about" },
       { label: "What We Cover", href: "/#verticals" },
       { label: "For Affiliate Programs", href: "/#partners" },
+      { label: "Contact", href: "/contact" },
     ],
   },
   {
