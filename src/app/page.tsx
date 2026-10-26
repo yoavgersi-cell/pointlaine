@@ -4,6 +4,8 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { CategoryHubMockup, ProviderCardsMockup } from "@/components/comparison-mockup";
 import { PartnerForm } from "@/components/partner-form";
+import { PartnerShowcase } from "@/components/partner-showcase";
+import { LogoStrip } from "@/components/logo-strip";
 import { PARTNER_METRICS } from "@/lib/site";
 
 const kicker = "text-xs font-semibold uppercase tracking-[0.16em] text-brand";
@@ -55,8 +57,8 @@ const stats = PARTNER_METRICS.length
   ? PARTNER_METRICS
   : [
       { value: "4", label: "Owned & operated sites" },
-      { value: "18", label: "Active partnerships" },
-      { value: "8+", label: "Consumer categories" },
+      { value: "20+", label: "Active partners" },
+      { value: "10", label: "Verticals" },
       { value: "100%", label: "Search & organic traffic" },
     ];
 
@@ -175,11 +177,9 @@ function Intent() {
 /*  VERTICALS                                                         */
 /* ------------------------------------------------------------------ */
 const verticals = [
-  { name: "Telehealth", items: ["Weight loss & GLP-1", "TRT & HRT", "Hair growth", "ED & online therapy"] },
-  { name: "Pet care", items: ["Pet insurance", "Pet supplements", "Dog food", "Cat food"] },
-  { name: "Home", items: ["Home warranties", "Home services", "Protection plans"] },
-  { name: "Finance", items: ["Insurance", "Banking", "Everyday money"] },
-  { name: "Lifestyle", items: ["Software & subscriptions", "Streaming", "Family & wellness"] },
+  { name: "Telehealth", items: ["Weight loss & GLP-1", "TRT", "HRT & menopause", "ED", "Hair growth", "Online therapy"] },
+  { name: "Insurance", items: ["Pet insurance", "Home warranties & protection plans", "Personal insurance"] },
+  { name: "Consumer services", items: ["Dog & cat food", "Pet supplements", "Home services", "Subscriptions & everyday services"] },
 ];
 
 function Verticals() {
@@ -187,10 +187,10 @@ function Verticals() {
     <section id="verticals" className="scroll-mt-16 border-y border-line bg-white">
       <div className="mx-auto max-w-6xl px-6 py-24 lg:py-28">
         <p className={`text-center ${kicker}`}>Our verticals</p>
-        <h2 className={`mx-auto mt-4 max-w-2xl text-center ${h2}`}>Where research comes before buying.</h2>
-        <div className="mt-16 grid gap-y-10 sm:grid-cols-2 lg:grid-cols-5">
+        <h2 className={`mx-auto mt-4 max-w-2xl text-center ${h2}`}>10 verticals where research comes before buying.</h2>
+        <div className="mt-16 grid gap-y-10 md:grid-cols-3">
           {verticals.map((v, i) => (
-            <div key={v.name} className={`lg:border-l lg:border-line lg:px-6 ${i === 0 ? "lg:border-l-0 lg:pl-0" : ""}`}>
+            <div key={v.name} className={`md:border-l md:border-line md:px-10 ${i === 0 ? "md:border-l-0 md:pl-0" : ""}`}>
               <h3 className="font-display text-xl font-semibold uppercase tracking-[0.04em]">{v.name}</h3>
               <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
                 {v.items.map((it) => (
@@ -201,7 +201,7 @@ function Verticals() {
           ))}
         </div>
         <p className="mt-14 text-center text-sm text-muted-foreground">
-          New categories are added as we build and acquire properties.
+          Three core areas, 10 verticals in total. New categories are added as we build and acquire properties.
         </p>
       </div>
     </section>
@@ -323,9 +323,11 @@ export default function Home() {
       <SiteHeader />
       <main id="main" className="flex-1">
         <Hero />
+        <LogoStrip />
         <Statement />
         <Advertisers />
         <Intent />
+        <PartnerShowcase />
         <Verticals />
         <Process />
         <Standards />

@@ -7,7 +7,7 @@ const display = Outfit({ variable: "--font-display-face", subsets: ["latin"] });
 const body = Figtree({ variable: "--font-body-face", subsets: ["latin"] });
 
 const description =
-  "Pointlaine is an independent digital publisher helping people make better decisions online, with content and comparison sites across telehealth, pet care, home, finance and other consumer categories.";
+  "Pointlaine is an independent digital publisher helping people make better decisions online, with content and comparison sites across telehealth, insurance and consumer services.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
