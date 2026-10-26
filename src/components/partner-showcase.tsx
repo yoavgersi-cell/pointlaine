@@ -2,13 +2,11 @@ import fs from "node:fs";
 import path from "node:path";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Check, Star } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
-/* Mid-page showcase: copy on the left, the hero photo on the right with floating product cards.
+/* Mid-page showcase: copy on the left, the hero photo on the right with a floating stats card.
  * The photo is read from public/hero.png at build time; until it exists a soft panel stands in. */
 const HERO_FILE = path.join(process.cwd(), "public", "hero.png");
-
-const features = ["Transparent pricing", "Verified reviews", "Expert insights", "Easy comparison"];
 
 function FloatingCard({ className, children }: { className: string; children: React.ReactNode }) {
   return (
@@ -49,51 +47,21 @@ export function PartnerShowcase() {
           </Link>
         </div>
 
-        <div className="relative mx-auto w-full max-w-[560px]">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-gradient-to-br from-[#EFE9DE] to-[#E3ECE6]">
-            {hasPhoto && (
-              <Image
-                src="/hero.png"
-                alt="A person comparing providers on a laptop"
-                fill
-                sizes="(min-width: 1024px) 560px, 100vw"
-                className="object-cover"
-              />
-            )}
-          </div>
+        <div className="relative mx-auto w-full max-w-[600px]">
+          {hasPhoto ? (
+            <Image
+              src="/hero.png"
+              alt="A person comparing providers on a laptop"
+              width={1328}
+              height={1184}
+              sizes="(min-width: 1024px) 600px, 100vw"
+              className="h-auto w-full"
+            />
+          ) : (
+            <div className="aspect-[4/5] rounded-[2rem] bg-gradient-to-br from-[#EFE9DE] to-[#E3ECE6]" />
+          )}
 
-          <FloatingCard className="-left-4 top-8 w-48 sm:-left-10">
-            <p className="text-xs font-semibold">Top features</p>
-            <ul className="mt-3 space-y-2">
-              {features.map((f) => (
-                <li key={f} className="flex items-center gap-2 text-[11px] text-muted-foreground">
-                  <span className="flex h-4 w-4 items-center justify-center rounded-full bg-brand">
-                    <Check className="h-2.5 w-2.5 text-white" strokeWidth={3} />
-                  </span>
-                  {f}
-                </li>
-              ))}
-            </ul>
-          </FloatingCard>
-
-          <FloatingCard className="-right-3 top-1/2 w-44 -translate-y-1/2 sm:-right-8">
-            <p className="text-xs font-semibold">Compare providers</p>
-            <div className="mt-3 grid grid-cols-3 gap-1.5">
-              {["#C9D8F2", "#CDE6D7", "#F3E2BF"].map((c) => (
-                <div key={c} className="rounded-lg border border-line p-1.5">
-                  <span className="mx-auto block h-4 w-4 rounded" style={{ background: c }} />
-                  <span className="mt-1.5 flex justify-center gap-px">
-                    {Array.from({ length: 4 }).map((_, i) => (
-                      <Star key={i} className="h-1.5 w-1.5 fill-[#E2B33C] text-[#E2B33C]" />
-                    ))}
-                  </span>
-                  <span className="mt-1.5 block h-1.5 rounded-full bg-brand" />
-                </div>
-              ))}
-            </div>
-          </FloatingCard>
-
-          <FloatingCard className="-bottom-5 left-6 flex items-center gap-5 sm:left-10">
+          <FloatingCard className="-bottom-10 left-0 flex items-center gap-5 sm:-left-4">
             <div>
               <p className="font-display text-2xl font-semibold leading-none text-brand">10</p>
               <p className="mt-1 text-[11px] text-muted-foreground">Verticals</p>
