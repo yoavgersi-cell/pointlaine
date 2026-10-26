@@ -12,7 +12,7 @@ export function SiteHeader() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
         <Link
           href="/"
-          className="flex items-center gap-2 text-xl font-semibold tracking-[-0.02em] text-foreground"
+          className="flex items-center gap-2 font-display text-xl font-semibold tracking-[-0.02em] text-foreground"
           aria-label="Pointlaine home"
         >
           <LogoMark />
@@ -27,7 +27,7 @@ export function SiteHeader() {
           ))}
           <Link
             href="/contact"
-            className="inline-flex items-center gap-1.5 rounded-md bg-ink px-4 py-2 text-sm font-semibold text-background transition-opacity hover:opacity-90"
+            className="inline-flex items-center gap-1.5 rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90"
           >
             Contact
             <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
@@ -57,7 +57,7 @@ export function SiteHeader() {
             ))}
             <Link
               href="/contact"
-              className="mt-1 flex items-center justify-center gap-1.5 rounded-lg bg-foreground px-3 py-2.5 text-sm font-medium text-background"
+              className="mt-1 flex items-center justify-center gap-1.5 rounded-lg bg-brand px-3 py-2.5 text-sm font-semibold text-white"
             >
               Contact
               <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
