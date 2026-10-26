@@ -7,9 +7,9 @@ const COLUMNS = [
   {
     title: "Company",
     links: [
-      { label: "About", href: "/#about" },
+      { label: "Advertisers", href: "/#advertisers" },
       { label: "What We Cover", href: "/#verticals" },
-      { label: "For Affiliate Programs", href: "/#partners" },
+      { label: "Contact", href: "/contact" },
     ],
   },
   {
@@ -37,11 +37,11 @@ const COLUMNS = [
 /* ------------------------------------------------------------------ */
 export function SiteFooter() {
   return (
-    <footer className="border-t border-line bg-paper py-16 lg:py-20">
+    <footer className="border-t border-line bg-white py-16 lg:py-20">
       <div className="mx-auto max-w-6xl px-6">
         <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:justify-between">
           <div className="max-w-xs">
-            <Link href="/" className="flex items-center gap-2 text-xl font-semibold tracking-tight">
+            <Link href="/" className="flex items-center gap-2 font-display text-xl font-semibold tracking-tight">
               <LogoMark />
               pointlaine
             </Link>

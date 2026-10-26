@@ -4,9 +4,9 @@ export const CONTACT_EMAIL = "partner@pointlaine.com";
 export const LEGAL_LAST_UPDATED = "October 15, 2026";
 
 export const NAV_LINKS = [
-  { href: "/#about", label: "Readers" },
+  { href: "/#advertisers", label: "Advertisers" },
+  { href: "/#readers", label: "Our Readers" },
   { href: "/#verticals", label: "Verticals" },
-  { href: "/#partners", label: "For Partners" },
   { href: "/#standards", label: "Standards" },
 ];
 
@@ -21,3 +21,17 @@ export function mailto(subject: string) {
  *   { value: "4m 10s", label: "Avg. time on comparison pages" },
  */
 export const PARTNER_METRICS: { value: string; label: string }[] = [];
+
+/*
+ * Business identity shown on /contact. Payoneer and affiliate networks check this
+ * page against your account details, so the address must match your Payoneer
+ * profile exactly. Empty fields are not shown.
+ */
+export const BUSINESS = {
+  legalName: "",
+  ownerName: "",
+  ownerTitle: "Founder",
+  phone: "",
+  addressLines: [] as string[],
+  registrationNumber: "",
+};
